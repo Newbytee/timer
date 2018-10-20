@@ -11,6 +11,7 @@ START_BUTTON.addEventListener("click", function() {
             break;
         case "Stop timer":
             START_BUTTON.innerHTML = "Start timer";
+            STATUS.innerHTML = "Timer";
             clearInterval(counter);
             return;
         default:
@@ -20,7 +21,7 @@ START_BUTTON.addEventListener("click", function() {
     const START_TIME = DISPLAY.innerHTML;
     const TIME = START_TIME.split(":", 2);
     let totalTimeSeconds = (parseInt(TIME[0]) * 60) + parseInt(TIME[1]);
-    totalTimeSeconds--;
+    if (totalTimeSeconds > 0) totalTimeSeconds--;
     counter = setInterval(function() {
         const MINTUES = Math.floor(totalTimeSeconds / 60);
         const SECONDS = totalTimeSeconds - (MINTUES * 60);
