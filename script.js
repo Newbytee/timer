@@ -26,7 +26,18 @@ START_BUTTON.addEventListener("click", function() {
     counter = setInterval(function() {
         const MINTUES = Math.floor(totalTimeSeconds / 60);
         const SECONDS = totalTimeSeconds - (MINTUES * 60);
-        DISPLAY.innerHTML = MINTUES + ":" + SECONDS;
+        let separator = ":";
+        let toPrepend = "";
+        
+        if (SECONDS < 10) {
+            separator += "0";
+        }
+        
+        if (MINTUES < 10) {
+            toPrepend += "0";
+        }
+        
+        DISPLAY.innerHTML = toPrepend + MINTUES + separator + SECONDS;
         if (totalTimeSeconds > 0) {
             totalTimeSeconds--;
         } else {

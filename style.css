@@ -6,3 +6,8 @@ body {
 h1 {
     font-weight: lighter;
 }
+
+#timerDisplay {
+    font-family: monospace;
+    font-size: 40px;
+}
