@@ -2,6 +2,7 @@
 const DISPLAY = document.getElementById("timerDisplay");
 const START_BUTTON = document.getElementById("timerStart");
 const STATUS = document.getElementById("status");
+let newTimerDone = true;
 let counter;
 
 START_BUTTON.addEventListener("click", function() {
@@ -29,20 +30,37 @@ START_BUTTON.addEventListener("click", function() {
         if (totalTimeSeconds > 0) {
             totalTimeSeconds--;
         } else {
-            switch (STATUS.innerHTML) {
-                case "Timer done":
-                case "Timer":
-                    STATUS.innerHTML = "!!! Timer done !!!";
-                    break;
-                case "!!! Timer done !!!":
-                    STATUS.innerHTML = "!! Timer done !!";
-                    break;
-                case "!! Timer done !!":
-                    STATUS.innerHTML = "! Timer done !";
-                    break;
-                case "! Timer done !":
-                    STATUS.innerHTML = "Timer done";
-                    break;
+            if (newTimerDone) {
+                switch (STATUS.innerHTML) {
+                    case "Timer":
+                        STATUS.innerHTML = "Timer done ! Timer done ! ";
+                        break;
+                    default:
+                        const N = STATUS.innerHTML.length - 1;
+                        let nextStatus = "";
+                        nextStatus += STATUS.innerHTML[N];
+                        for (let i = 0; i < N; i++) {
+                            nextStatus += STATUS.innerHTML[i];
+                        }
+                        STATUS.innerHTML = nextStatus;
+                        break;
+                }
+            } else {
+                switch (STATUS.innerHTML) {
+                    case "Timer done":
+                    case "Timer":
+                        STATUS.innerHTML = "!!! Timer done !!!";
+                        break;
+                    case "!!! Timer done !!!":
+                        STATUS.innerHTML = "!! Timer done !!";
+                        break;
+                    case "!! Timer done !!":
+                        STATUS.innerHTML = "! Timer done !";
+                        break;
+                    case "! Timer done !":
+                        STATUS.innerHTML = "Timer done";
+                        break;
+                }
             }
         }
     }, 1000);
